@@ -1,5 +1,7 @@
 {
-    "elements": [],
+    "elements": [
+        { "type": "ValidationTextBox", "name": "TestFied", "caption": "TestCaption" }
+    ],
     "actions": [],
     "status": []
 }
