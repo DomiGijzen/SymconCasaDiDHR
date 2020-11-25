@@ -1,0 +1,12 @@
+{
+    "id": "{1F280F2C-1852-49BD-94C4-5DAFD101AC69}",
+    "name": "LightControl",
+    "type": 3,
+    "vendor": "GijzenDMA",
+    "aliases": [],
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "LC",
+    "url": ""
+}

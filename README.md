@@ -1,2 +1,6 @@
 # SymconCasaDiDHR
-Symcon modules in use for CasaDiDHR
+
+Folgende Module beinhaltet das SymconCasaDiDHR Repository:
+
+- __LightControl__ ([Dokumentation](LightControl))  
+	Kurze Beschreibung des Moduls.
