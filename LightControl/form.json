@@ -5,6 +5,9 @@
                 {"caption": "HUE", "value": 0 }
             ]
         }
+        ,{ "type": "SelectInstance", "name": "DimmerInstance", "caption": "Dimmer Instance" }
+        ,{ "type": "NumberSpinner", "name": "StartPercentage", "caption": "Start Percentage", "minimum": 0, "maximum": 100 }
+        ,{ "type": "NumberSpinner", "name": "StdPercentage", "caption": "Standaard Percentage", "minimum": 0, "maximum": 100 }
         
     ],
     "actions": [],
