@@ -11,7 +11,7 @@
 			$this -> RegisterPropertyInteger("DimmerInstance", 0);
 			$this -> RegisterPropertyInteger("DimmerKanaal", 0);
 			$this -> RegisterPropertyInteger("StartPercentage", 0);
-			$this -> RegisterPropertyInteger("StdPercentage", 50)
+			$this -> RegisterPropertyInteger("StdPercentage", 50);
 			$this -> RegisterPropertyInteger("StdDimTime", 1);
 
 			//StatusVariables
