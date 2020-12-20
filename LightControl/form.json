@@ -3,11 +3,14 @@
         { "type": "Select", "name": "SortDimmer", "caption": "Soort Dimmer",
             "options": [
                 {"caption": "HUE", "value": 0 }
+                ,{"caption": "DMX", "value": 1 }
             ]
         }
         ,{ "type": "SelectInstance", "name": "DimmerInstance", "caption": "Dimmer Instance" }
+        ,{ "type": "NumberSpinner", "name": "DimmerKanaal", "caption": "Dimmer Kanaal"}
         ,{ "type": "NumberSpinner", "name": "StartPercentage", "caption": "Start Percentage", "minimum": 0, "maximum": 100 }
         ,{ "type": "NumberSpinner", "name": "StdPercentage", "caption": "Standaard Percentage", "minimum": 0, "maximum": 100 }
+        ,{ "type": "NumberSpinner", "name": "StdDimTime", "caption": "Standaard Dim Tijd (sec)", "minimum": 0, "maximum": 60 }
         
     ],
     "actions": [],
