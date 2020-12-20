@@ -9,7 +9,7 @@
 			//Properties
 			$this -> RegisterPropertyInteger("DimmerType", 0);
 			$this -> RegisterPropertyInteger("DimmerInstance", 0);
-			$this -> RegisterPropertyInteger("DimmerKanaal", 0);
+			$this -> RegisterPropertyInteger("DimmerChannel", 0);
 			$this -> RegisterPropertyInteger("StartPercentage", 0);
 			$this -> RegisterPropertyInteger("StdPercentage", 50);
 			$this -> RegisterPropertyInteger("StdDimTime", 1);
@@ -29,6 +29,12 @@
 		{
 			//Never delete this line!
 			parent::ApplyChanges();
+		}
+
+		//Module Functions
+		public function SwitchLight()
+		{
+			PHUE_SwitchMode(41601, 1);
 		}
 
 	}
