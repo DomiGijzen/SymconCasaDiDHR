@@ -1,6 +1,11 @@
 {
     "elements": [
-        { "type": "ValidationTextBox", "name": "TestFied", "caption": "TestCaption" }
+        { "type": "Select", "name": "SortDimmer", "caption": "Soort Dimmer",
+            "options": [
+                {"caption": "HUE", "value": 0 }
+            ]
+        }
+        
     ],
     "actions": [],
     "status": []
