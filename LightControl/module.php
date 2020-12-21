@@ -57,6 +57,7 @@
 
 				case 1: //Switch to on
 					PHUE_SwitchMode($DimmerInstance, 1);
+					print "SwitchOn";
 					break;
 
 			}
