@@ -62,7 +62,6 @@
 
 			}
 			
-			PHUE_SwitchMode($DimmerInstance, 1);
 		}
 
 	}
