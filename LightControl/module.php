@@ -32,7 +32,7 @@
 		}
 
 		//Module Functions
-		public function SwitchLight($DesiredState = 99)
+		public function SwitchLight($DesiredState)
 		{
 			$DimmerInstance = $this->ReadPropertyInteger("DimmerInstance");
 			
