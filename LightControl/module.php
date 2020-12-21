@@ -34,30 +34,22 @@
 		//Module Functions
 		public function SwitchLight($DesiredState)
 		{
-			print $DesiredState;
 			$DimmerInstance = $this->ReadPropertyInteger("DimmerInstance");
-			print $DimmerInstance;
 			$StateVariableId = IPS_GetVariableIDByName("State", $DimmerInstance);
-			print $StateVariableId;
 			$CurrentState = GetValue($StateVariableId);
-			print $CurrentState;
 			switch($DesiredState)
 			{
 				case 99: //State not desired -> Switch
 					$SetState = $CurrentState == 1 ? 0 : 1;
-					
-					print $SetState;
 					PHUE_SwitchMode($DimmerInstance, $SetState);
 					break;
 				
 				case 0: //Switch to off
 					PHUE_SwitchMode($DimmerInstance, 0);
-					print "SwitchOff";
 					break;
 
 				case 1: //Switch to on
 					PHUE_SwitchMode($DimmerInstance, 1);
-					print "SwitchOn";
 					break;
 
 			}
