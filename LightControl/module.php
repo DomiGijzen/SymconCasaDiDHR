@@ -38,7 +38,7 @@
 			
 			$StateVariableId = @IPS_GetVariableIDByName("State", $DimmerInstance);
 			
-			$CurrentState = IPS_GetVariable($StateVariableId)
+			$CurrentState = IPS_GetVariable($StateVariableId);
 
 			switch($CurrentState)
 			{
