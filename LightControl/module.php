@@ -34,6 +34,7 @@
 		//Module Functions
 		public function SwitchLight($DesiredState)
 		{
+			print $DesiredState;
 			$DimmerInstance = $this->ReadPropertyInteger("DimmerInstance");
 			print $DimmerInstance;
 			$StateVariableId = IPS_GetVariableIDByName("State", $DimmerInstance);
