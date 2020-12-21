@@ -44,6 +44,7 @@
 			{
 				case 99: //State not desired -> Switch
 					$DesiredState = $CurrentState == 1 ? 1 : 0;
+					PHUE_SwitchMode($DimmerInstance, $DesiredState);
 					break;
 				
 				case 0: //Switch to off
