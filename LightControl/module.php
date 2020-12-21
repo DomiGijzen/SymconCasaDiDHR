@@ -36,9 +36,9 @@
 		{
 			$DimmerInstance = $this->ReadPropertyInteger("DimmerInstance");
 			print $DimmerInstance;
-			$StateVariableId = @IPS_GetVariableIDByName("State", $DimmerInstance);
+			$StateVariableId = IPS_GetVariableIDByName("State", $DimmerInstance);
 			print $StateVariableId;
-			$CurrentState = @IPS_GetVariable($StateVariableId);
+			$CurrentState = IPS_GetValue($StateVariableId);
 			print $CurrentState;
 			switch($DesiredState)
 			{
