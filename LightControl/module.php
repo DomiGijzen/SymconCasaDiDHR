@@ -44,7 +44,7 @@
 			{
 				case 99: //State not desired -> Switch
 					$SetState = $CurrentState == 1 ? 0 : 1;
-					print $SetState
+					print $SetState;
 					PHUE_SwitchMode($DimmerInstance, $SetState);
 					break;
 				
