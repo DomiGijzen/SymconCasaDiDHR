@@ -34,7 +34,8 @@
 		//Module Functions
 		public function SwitchLight()
 		{
-			PHUE_SwitchMode(41601, 1);
+			$DimmerInstance = ReadPropertyInteger("DimmerInstance");
+			PHUE_SwitchMode($DimmerInstance, 1);
 		}
 
 	}
