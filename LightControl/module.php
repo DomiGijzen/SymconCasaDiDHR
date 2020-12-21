@@ -40,11 +40,11 @@
 			
 			$CurrentState = IPS_GetVariable($StateVariableId);
 
-			switch($CurrentState)
+			switch($DesiredState)
 			{
 				case 99: //State not desired -> Switch
-					$DesiredState = $CurrentState == 1 ? 0 : 1;
-					PHUE_SwitchMode($DimmerInstance, $DesiredState);
+					$SetState = $CurrentState == 1 ? 0 : 1;
+					PHUE_SwitchMode($DimmerInstance, $SetState);
 					break;
 				
 				case 0: //Switch to off
