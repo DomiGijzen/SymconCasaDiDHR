@@ -104,4 +104,11 @@
 			
 		}
 
+		public function RequestAction($Ident, $Value)
+		{
+			if ($Ident === 'Status') {
+				$this->SwitchLight($Value);
+			}
+		}
+
 	}
