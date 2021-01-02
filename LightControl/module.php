@@ -89,11 +89,11 @@
 			{
 				case 1: if(PHUE_SwitchMode($DimmerInstance, $SetState)) {
 					$this->SetValue("Status", $SetState);
-					$this->SetValue("Dim", $StdPercentage);
+					$this->SetValue("Dim", $SetDim);
 					}
 					break;
 				
-				case 2: if(DMX_FadeChannel($DimmerInstance, $DimmerChannel, (($ChannelSteps / 100) * $StdPercentage * $SetState), $StdDimTime)) {
+				case 2: if(DMX_FadeChannel($DimmerInstance, $DimmerChannel, (($ChannelSteps / 100) * $SetDim * $SetState), $StdDimTime)) {
 					$this->SetValue("Status", $SetState);
 					$this->SetValue("Dim", $SetDim);
 					}
