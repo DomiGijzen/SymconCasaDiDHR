@@ -47,14 +47,15 @@
 			{
 				case 1: //HUE
 					$StateVariableId = IPS_GetVariableIDByName("State", $DimmerInstance);
+					$CurrentState = GetValue($StateVariableId);
 					break;
 				
 				case 2: //DMX
 					$StateVariableName = "Channel (".$DimmerChannel.")";
 					$StateVariableId = IPS_GetVariableIDByName($StateVariableName, $DimmerInstance);
+					$CurrentState = if(GetValue($StateVariableId) != 0) ? 1 : 0;
 					break;
 			}
-			$CurrentState = GetValue($StateVariableId);
 			
 			//Derive desired state
 			switch($DesiredState)
