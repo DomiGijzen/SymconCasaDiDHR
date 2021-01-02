@@ -33,7 +33,7 @@
 		}
 
 		//Module Functions
-		public function SwitchLight($DesiredState)
+		public function SwitchLight($DesiredState, $DesiredDim)
 		{
 			$DimmerType = $this->ReadPropertyInteger("DimmerType");
 			$DimmerInstance = $this->ReadPropertyInteger("DimmerInstance");
@@ -60,7 +60,7 @@
 			//Derive desired state
 			switch($DesiredState)
 			{
-				case 99: //State not desired -> Switch
+				case 999: //State not desired -> Switch
 					$SetState = $CurrentState == 1 ? 0 : 1;
 					break;
 				
@@ -71,7 +71,17 @@
 				case 1: //Switch to on
 					$SetState = 1;
 					break;
+			}
 
+			//Derive desired dim
+			if ($SetState == 0) {
+				$SetDim = 0;
+			} 
+			elseif ($SetState == 1 & $DesiredDim == 999) {
+				$SetDim = $StdPercentage;
+			}
+			else {
+				$SetDim = $DesiredDim
 			}
 
 			//Set Light
