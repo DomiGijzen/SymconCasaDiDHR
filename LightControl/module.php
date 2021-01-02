@@ -17,7 +17,9 @@
 
 			//StatusVariables
 			$this->RegisterVariableBoolean("Status", "Lamp Aan/Uit", "~Switch");
+			$this->EnableAction("Status");
 			$this->RegisterVariableInteger("Dim", "Lamp Dim stand", "DimLedSpot");
+			$this->EnableAction("Dim");
 		}
 
 		public function Destroy()
