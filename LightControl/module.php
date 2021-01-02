@@ -16,9 +16,9 @@
 			$this -> RegisterPropertyInteger("StdDimTime", 1);
 
 			//StatusVariables
-			$this->RegisterVariableBoolean("Status", "Lamp Aan/Uit", "~Switch");
+			$this->RegisterVariableBoolean("Status", "Status", "~Switch");
 			$this->EnableAction("Status");
-			$this->RegisterVariableInteger("Dim", "Lamp Dim stand", "DimLedSpot");
+			$this->RegisterVariableInteger("Dim", "Dimstand", "DimLedSpot");
 			$this->EnableAction("Dim");
 		}
 
