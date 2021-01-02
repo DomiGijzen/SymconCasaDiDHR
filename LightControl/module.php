@@ -10,6 +10,7 @@
 			$this -> RegisterPropertyInteger("DimmerType", 0);
 			$this -> RegisterPropertyInteger("DimmerInstance", 0);
 			$this -> RegisterPropertyInteger("DimmerChannel", 0);
+			$this -> RegisterPropertyInteger("ChannelBits", 0);
 			$this -> RegisterPropertyInteger("StartPercentage", 0);
 			$this -> RegisterPropertyInteger("StdPercentage", 50);
 			$this -> RegisterPropertyInteger("StdDimTime", 1);
@@ -34,24 +35,47 @@
 		//Module Functions
 		public function SwitchLight($DesiredState)
 		{
+			$DimmerType = $this->ReadPropertyInteger("DimmerType");
 			$DimmerInstance = $this->ReadPropertyInteger("DimmerInstance");
+			$DimmerChannel = $this->ReadPropertyInteger("DimmerChannel");
+			$ChannelBits = $this->ReadPropertyInteger("ChannelBits");
+			$StdPercentage = $this->ReadPropertyInteger("StdPercentage");
+			$StdDimTime = $this->ReadPropertyInteger("StdDimTime");
 			$StateVariableId = IPS_GetVariableIDByName("State", $DimmerInstance);
+			$ChannelSteps = pow(2, $ChannelBits) - 1;
 			$CurrentState = GetValue($StateVariableId);
+			//Derive SetState
 			switch($DesiredState)
 			{
 				case 99: //State not desired -> Switch
 					$SetState = $CurrentState == 1 ? 0 : 1;
-					PHUE_SwitchMode($DimmerInstance, $SetState);
 					break;
 				
 				case 0: //Switch to off
-					PHUE_SwitchMode($DimmerInstance, 0);
+					$SetState = 0;
 					break;
 
 				case 1: //Switch to on
-					PHUE_SwitchMode($DimmerInstance, 1);
+					$SetState = 1;
 					break;
 
+			}
+
+			//Set Light
+			if (
+				switch($DimmerType)
+				{
+					case 1: //HUE
+						PHUE_SwitchMode($DimmerInstance, $SetState);
+						break;
+					
+					case 2: //DMX
+						DMX_FadeChannel($DimmerInstance, $DimmerChannel, (($ChannelSteps / 100) * $StdPercentage * $SetState), $StdDimTime);
+						break;
+				}
+			) {
+				$this->SetValue("Status", $SetState);
+				$this->SetValue("Dim", ) $StdPercentage);
 			}
 			
 		}
