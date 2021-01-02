@@ -109,6 +109,9 @@
 			if ($Ident === 'Status') {
 				$this->SwitchLight($Value, 999);
 			}
+			if ($Ident === 'Dim') {
+				$this->SwitchLight(1, $Value);
+			}
 		}
 
 	}
