@@ -7,7 +7,7 @@
             ]
         }
         ,{ "type": "SelectInstance", "name": "DimmerInstance", "caption": "Dimmer Instance" }
-        ,{ "type": "NumberSpinner", "name": "DimmerChannel", "caption": "Dimmer Kanaal", "enabled": false}
+        ,{ "type": "NumberSpinner", "name": "DimmerChannel", "caption": "Dimmer Kanaal", "enabled": true}
         ,{ "type": "NumberSpinner", "name": "StartPercentage", "caption": "Start Percentage", "minimum": 0, "maximum": 100 }
         ,{ "type": "NumberSpinner", "name": "StdPercentage", "caption": "Standaard Percentage", "minimum": 0, "maximum": 100 }
         ,{ "type": "NumberSpinner", "name": "StdDimTime", "caption": "Standaard Dim Tijd (sec)", "minimum": 0, "maximum": 60 }
