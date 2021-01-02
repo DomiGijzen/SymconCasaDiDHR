@@ -60,19 +60,23 @@
 			}
 			
 			//Derive desired state
-			switch($DesiredState)
-			{
-				case 999: //State not desired -> Switch
-					$SetState = $CurrentState == 1 ? 0 : 1;
-					break;
-				
-				case 0: //Switch to off
-					$SetState = 0;
-					break;
+			if ($DesiredDim == 0) {
+				$SetState = 0;
+			} else {
+				switch($DesiredState)
+				{
+					case 999: //State not desired -> Switch
+						$SetState = $CurrentState == 1 ? 0 : 1;
+						break;
+					
+					case 0: //Switch to off
+						$SetState = 0;
+						break;
 
-				case 1: //Switch to on
-					$SetState = 1;
-					break;
+					case 1: //Switch to on
+						$SetState = 1;
+						break;
+				}
 			}
 
 			//Derive desired dim
