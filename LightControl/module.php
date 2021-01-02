@@ -62,18 +62,17 @@
 			}
 
 			//Set Light
-			if (
-				if ($DimmerType = 1) //HUE
-					{
-						PHUE_SwitchMode($DimmerInstance, $SetState);
-					}
-				elseif ($DimmerType = 2) //DMX
-					{
-						DMX_FadeChannel($DimmerInstance, $DimmerChannel, (($ChannelSteps / 100) * $StdPercentage * $SetState), $StdDimTime);
-					}
-			) {
-				$this->SetValue("Status", $SetState);
-				$this->SetValue("Dim", ) $StdPercentage);
+			switch($DimmerType)
+			{
+				case 1: if(PHUE_SwitchMode($DimmerInstance, $SetState)) {
+					$this->SetValue("Status", $SetState);
+					$this->SetValue("Dim", ) $StdPercentage)};
+					break;
+				
+				case 2: if(DMX_FadeChannel($DimmerInstance, $DimmerChannel, (($ChannelSteps / 100) * $StdPercentage * $SetState), $StdDimTime)) {
+					$this->SetValue("Status", $SetState);
+					$this->SetValue("Dim", ) $StdPercentage)};
+					break;
 			}
 			
 		}
