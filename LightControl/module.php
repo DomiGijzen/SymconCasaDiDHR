@@ -53,7 +53,7 @@
 				case 2: //DMX
 					$StateVariableName = "Channel (".$DimmerChannel.")";
 					$StateVariableId = IPS_GetVariableIDByName($StateVariableName, $DimmerInstance);
-					if(GetValue($StateVariableId) != 0) ? $CurrentState = 1 : $CurrentState = 0;
+					$CurrentState = (GetValue($StateVariableId) != 0) ? 1 : 0;
 					break;
 			}
 			
