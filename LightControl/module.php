@@ -41,10 +41,22 @@
 			$ChannelBits = $this->ReadPropertyInteger("ChannelBits");
 			$StdPercentage = $this->ReadPropertyInteger("StdPercentage");
 			$StdDimTime = $this->ReadPropertyInteger("StdDimTime");
-			$StateVariableId = IPS_GetVariableIDByName("State", $DimmerInstance);
 			$ChannelSteps = pow(2, $ChannelBits) - 1;
+			//Derive Variables per InstanceType
+			switch($DimmerType)
+			{
+				case 1: //HUE
+					$StateVariableId = IPS_GetVariableIDByName("State", $DimmerInstance);
+					break;
+				
+				case 2: //DMX
+					$StateVariableName = "Channel (".$DimmerChannel.")";
+					$StateVariableId = IPS_GetVariableIDByName($StateVariableName, $DimmerInstance);
+					break;
+			}
 			$CurrentState = GetValue($StateVariableId);
-			//Derive SetState
+			
+			//Derive desired state
 			switch($DesiredState)
 			{
 				case 99: //State not desired -> Switch
