@@ -81,7 +81,7 @@
 				$SetDim = $StdPercentage;
 			}
 			else {
-				$SetDim = $DesiredDim
+				$SetDim = $DesiredDim;
 			}
 
 			//Set Light
