@@ -107,7 +107,7 @@
 		public function RequestAction($Ident, $Value)
 		{
 			if ($Ident === 'Status') {
-				$this->SwitchLight($Value, $StdPercentage);
+				$this->SwitchLight($Value, 999);
 			}
 		}
 
