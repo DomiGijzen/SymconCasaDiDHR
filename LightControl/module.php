@@ -95,7 +95,7 @@
 				
 				case 2: if(DMX_FadeChannel($DimmerInstance, $DimmerChannel, (($ChannelSteps / 100) * $StdPercentage * $SetState), $StdDimTime)) {
 					$this->SetValue("Status", $SetState);
-					$this->SetValue("Dim", $StdPercentage);
+					$this->SetValue("Dim", $SetDim);
 					}
 					break;
 			}
