@@ -44,26 +44,29 @@
 			$ChannelBits = $this->ReadPropertyInteger("ChannelBits");
 			$StdPercentage = $this->ReadPropertyInteger("StdPercentage");
 			$StdDimTime = $this->ReadPropertyInteger("StdDimTime");
-			$ChannelSteps = pow(2, $ChannelBits) - 1;
-			
+			$StartPercentage = $this->ReadPropertyInteger("StartPercentage")
+						
 			//Derive Variables per InstanceType
 			switch($InstanceType)
 			{
 				case 1: //HUE
 					$StateVariableId = IPS_GetVariableIDByName("State", $Instance);
 					$CurrentState = GetValue($StateVariableId);
+					$ChannelSteps = pow(2, $ChannelBits) - 2; //Because HUE also uses -1 (for?)
 					break;
 				
 				case 2: //DMX
 					$StateVariableName = "Channel (".$Channel.")";
 					$StateVariableId = IPS_GetVariableIDByName($StateVariableName, $Instance);
 					$CurrentState = (GetValue($StateVariableId) != 0) ? 1 : 0;
+					$ChannelSteps = pow(2, $ChannelBits) - 1;
 					break;
 
 				case 3: //IO-Relais
 					$StateVariableName = "FB_DO_SW_".sprintf('%03d', $Channel);
 					$StateVariableId = IPS_GetVariableIDByName($StateVariableName, $Instance);
 					$CurrentState = GetValue($StateVariableId);
+					$ChannelSteps = pow(2, $ChannelBits) - 1;
 			}
 			
 			//Derive desired state
@@ -86,16 +89,21 @@
 				}
 			}
 
-			//Derive desired dim
+			//Derive desired dim percentage
 			if ($SetState == 0) {
-				$SetDim = 0;
+				$SetDimPerc = 0;
 			} 
 			elseif ($SetState == 1 & $DesiredDim == 999) {
-				$SetDim = $StdPercentage;
+				$SetDimPerc = $StdPercentage;
 			}
 			else {
-				$SetDim = $DesiredDim;
+				$SetDimPerc = $DesiredDim;
 			}
+
+			//Derive desired dim int
+			$ChannelStepsStart = ($ChannelSteps / 100) * $StartPercentage
+			$ChannelStepsCorrected = $ChannelSteps - $ChannelStepsStart
+			$SetDim = $ChannelStepsStart + (($ChannelStepsCorrected / 100) * $SetDimPerc);
 
 			//Set Light
 			switch($InstanceType)
@@ -106,7 +114,7 @@
 					}
 					break;
 				
-				case 2: if(DMX_FadeChannel($Instance, $Channel, (($ChannelSteps / 100) * $SetDim * $SetState), $StdDimTime)) { //DMX
+				case 2: if(DMX_FadeChannel($Instance, $Channel, $SetDim, $StdDimTime)) { //DMX
 					$this->SetValue("Status", $SetState);
 					$this->SetValue("Dim", $SetDim);
 					}
