@@ -101,9 +101,13 @@
 			}
 
 			//Derive desired dim int
-			$ChannelStepsStart = ($ChannelSteps / 100) * $StartPercentage;
-			$ChannelStepsCorrected = $ChannelSteps - $ChannelStepsStart;
-			$SetDim = $ChannelStepsStart + (($ChannelStepsCorrected / 100) * $SetDimPerc);
+			if ($DesiredDim == 0) {
+				$SetDim = 0
+			} else {
+				$ChannelStepsStart = ($ChannelSteps / 100) * $StartPercentage;
+				$ChannelStepsCorrected = $ChannelSteps - $ChannelStepsStart;
+				$SetDim = $ChannelStepsStart + (($ChannelStepsCorrected / 100) * $SetDimPerc);
+			}
 
 			//Set Light
 			switch($InstanceType)
