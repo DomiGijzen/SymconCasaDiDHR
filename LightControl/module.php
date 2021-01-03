@@ -101,7 +101,7 @@
 			}
 
 			//Derive desired dim int
-			if ($DesiredDim == 0) {
+			if ($SetDimPerc == 0) {
 				$SetDim = 0;
 			} else {
 				$ChannelStepsStart = ($ChannelSteps / 100) * $StartPercentage;
