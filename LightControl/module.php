@@ -110,13 +110,13 @@
 			{
 				case 1: if(PHUE_DimSet($Instance, $SetDim)) { //HUE
 					$this->SetValue("Status", $SetState);
-					$this->SetValue("Dim", $SetDim);
+					$this->SetValue("Dim", $SetDimPerc);
 					}
 					break;
 				
 				case 2: if(DMX_FadeChannel($Instance, $Channel, $SetDim, $StdDimTime)) { //DMX
 					$this->SetValue("Status", $SetState);
-					$this->SetValue("Dim", $SetDim);
+					$this->SetValue("Dim", $SetDimPerc);
 					}
 					break;
 
