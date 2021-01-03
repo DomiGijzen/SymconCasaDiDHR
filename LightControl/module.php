@@ -113,7 +113,7 @@
 			switch($InstanceType)
 			{
 				case 1: //HUE
-					$array = ['bri' => $SetDimPerc,  'transitiontime' => $StdDimTime];
+					$array = ['bri' => $SetDim,  'transitiontime' => $StdDimTime];
 					PHUE_Request($Instance,$array); 
 					//if(PHUE_DimSet($Instance, $SetDim)) {
 					$this->SetValue("Status", $SetState);
