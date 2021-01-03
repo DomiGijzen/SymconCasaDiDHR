@@ -101,8 +101,8 @@
 			}
 
 			//Derive desired dim int
-			$ChannelStepsStart = ($ChannelSteps / 100) * $StartPercentage
-			$ChannelStepsCorrected = $ChannelSteps - $ChannelStepsStart
+			$ChannelStepsStart = ($ChannelSteps / 100) * $StartPercentage;
+			$ChannelStepsCorrected = $ChannelSteps - $ChannelStepsStart;
 			$SetDim = $ChannelStepsStart + (($ChannelStepsCorrected / 100) * $SetDimPerc);
 
 			//Set Light
