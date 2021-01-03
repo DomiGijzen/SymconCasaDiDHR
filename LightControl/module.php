@@ -113,12 +113,12 @@
 			switch($InstanceType)
 			{
 				case 1: //HUE
-					$array = ['bri' => $SetDim,  'transitiontime' => $StdDimTime];
-					PHUE_Request($Instance,$array); 
-					//if(PHUE_DimSet($Instance, $SetDim)) {
+					//$array = ['bri' => $SetDim,  'transitiontime' => $StdDimTime];
+					//PHUE_Request($Instance,$array); 
+					if(PHUE_DimSet($Instance, $SetDim)) {
 					$this->SetValue("Status", $SetState);
 					$this->SetValue("Dim", $SetDimPerc);
-					//}
+					}
 					break;
 				
 				case 2: if(DMX_FadeChannel($Instance, $Channel, $SetDim, $StdDimTime)) { //DMX
