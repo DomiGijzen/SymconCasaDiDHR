@@ -1,16 +1,19 @@
 {
     "elements": [
-        { "type": "Select", "name": "DimmerType", "caption": "Soort Dimmer",
+        { "type": "Select", "name": "InstanceType", "caption": "Soort Dimmer",
             "options": [
                 {"caption": "HUE", "value": 1 }
                 ,{"caption": "DMX", "value": 2 }
+                ,{"caption": "IO-Relais", "value": 3 }
             ]
         }
-        ,{ "type": "SelectInstance", "name": "DimmerInstance", "caption": "Dimmer Instance" }
-        ,{ "type": "NumberSpinner", "name": "DimmerChannel", "caption": "Dimmer Kanaal", "enabled": true}
-        ,{ "type": "Select", "name": "ChannelBits", "caption": "Bits per kanaal", "enabled": true,
+        ,{ "type": "Label", "caption": "Can also be the logical parent group in which the variables are stored." }
+        ,{ "type": "SelectInstance", "name": "Instance", "caption": "Instance" }
+        ,{ "type": "NumberSpinner", "name": "Channel", "caption": "Channel", "enabled": true}
+        ,{ "type": "Select", "name": "ChannelBits", "caption": "Bits per channel", "enabled": true,
             "options": [
-                {"caption": "8 bit", "value": 8 }
+                {"caption": "1 bit", "value": 1 }
+                ,{"caption": "8 bit", "value": 8 }
                 ,{"caption": "16 bit", "value": 16 }
             ]}
         ,{ "type": "NumberSpinner", "name": "StartPercentage", "caption": "Start Percentage", "minimum": 0, "maximum": 100 }

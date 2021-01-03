@@ -7,9 +7,9 @@
 			parent::Create();
 			
 			//Properties
-			$this -> RegisterPropertyInteger("DimmerType", 0);
-			$this -> RegisterPropertyInteger("DimmerInstance", 0);
-			$this -> RegisterPropertyInteger("DimmerChannel", 0);
+			$this -> RegisterPropertyInteger("InstanceType", 0);
+			$this -> RegisterPropertyInteger("Instance", 0);
+			$this -> RegisterPropertyInteger("Channel", 0);
 			$this -> RegisterPropertyInteger("ChannelBits", 0);
 			$this -> RegisterPropertyInteger("StartPercentage", 0);
 			$this -> RegisterPropertyInteger("StdPercentage", 50);
@@ -37,26 +37,33 @@
 		//Module Functions
 		public function SwitchLight($DesiredState, $DesiredDim)
 		{
-			$DimmerType = $this->ReadPropertyInteger("DimmerType");
-			$DimmerInstance = $this->ReadPropertyInteger("DimmerInstance");
-			$DimmerChannel = $this->ReadPropertyInteger("DimmerChannel");
+			//Get Variables from module
+			$InstanceType = $this->ReadPropertyInteger("InstanceType");
+			$Instance = $this->ReadPropertyInteger("Instance");
+			$Channel = $this->ReadPropertyInteger("Channel");
 			$ChannelBits = $this->ReadPropertyInteger("ChannelBits");
 			$StdPercentage = $this->ReadPropertyInteger("StdPercentage");
 			$StdDimTime = $this->ReadPropertyInteger("StdDimTime");
 			$ChannelSteps = pow(2, $ChannelBits) - 1;
+			
 			//Derive Variables per InstanceType
-			switch($DimmerType)
+			switch($InstanceType)
 			{
 				case 1: //HUE
-					$StateVariableId = IPS_GetVariableIDByName("State", $DimmerInstance);
+					$StateVariableId = IPS_GetVariableIDByName("State", $Instance);
 					$CurrentState = GetValue($StateVariableId);
 					break;
 				
 				case 2: //DMX
-					$StateVariableName = "Channel (".$DimmerChannel.")";
-					$StateVariableId = IPS_GetVariableIDByName($StateVariableName, $DimmerInstance);
+					$StateVariableName = "Channel (".$Channel.")";
+					$StateVariableId = IPS_GetVariableIDByName($StateVariableName, $Instance);
 					$CurrentState = (GetValue($StateVariableId) != 0) ? 1 : 0;
 					break;
+
+				case 3: //IO-Relais
+					$StateVariableName = "FB_DO_SW_".sprintf('%03d', $Channel);
+					$StateVariableId = IPS_GetVariableIDByName($StateVariableName, $Instance);
+					$CurrentState = GetValue($StateVariableId);
 			}
 			
 			//Derive desired state
@@ -91,19 +98,25 @@
 			}
 
 			//Set Light
-			switch($DimmerType)
+			switch($InstanceType)
 			{
-				case 1: if(PHUE_SwitchMode($DimmerInstance, $SetState)) {
+				case 1: if(PHUE_SwitchMode($Instance, $SetState)) { //HUE
 					$this->SetValue("Status", $SetState);
 					$this->SetValue("Dim", $SetDim);
 					}
 					break;
 				
-				case 2: if(DMX_FadeChannel($DimmerInstance, $DimmerChannel, (($ChannelSteps / 100) * $SetDim * $SetState), $StdDimTime)) {
+				case 2: if(DMX_FadeChannel($Instance, $Channel, (($ChannelSteps / 100) * $SetDim * $SetState), $StdDimTime)) { //DMX
 					$this->SetValue("Status", $SetState);
 					$this->SetValue("Dim", $SetDim);
 					}
 					break;
+
+				case 3: //IO-Relais
+					$MQTTPayload = ($SetState == 1 ? "TRUE" : "FALSE");
+					if(MQTTC_Publish(27748, "WAGO-PFC200/In/DigitalOutputs/".$StateVariableName, $MQTTPayload, 0, 0)) {//IO-Relais
+					$this->SetValue("Status", $SetState);
+					}
 			}
 			
 		}
