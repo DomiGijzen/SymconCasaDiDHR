@@ -100,7 +100,7 @@
 			//Set Light
 			switch($InstanceType)
 			{
-				case 1: if(PHUE_SwitchMode($Instance, $SetState)) { //HUE
+				case 1: if(PHUE_DimSet($Instance, $SetDim)) { //HUE
 					$this->SetValue("Status", $SetState);
 					$this->SetValue("Dim", $SetDim);
 					}
