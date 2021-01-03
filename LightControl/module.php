@@ -112,10 +112,13 @@
 			//Set Light
 			switch($InstanceType)
 			{
-				case 1: if(PHUE_DimSet($Instance, $SetDim)) { //HUE
+				case 1: //HUE
+					$array = ['bri' => $SetDimPerc,  'transitiontime' => $StdDimTime];
+					PHUE_Request($instanzID,$array); 
+					//if(PHUE_DimSet($Instance, $SetDim)) {
 					$this->SetValue("Status", $SetState);
 					$this->SetValue("Dim", $SetDimPerc);
-					}
+					//}
 					break;
 				
 				case 2: if(DMX_FadeChannel($Instance, $Channel, $SetDim, $StdDimTime)) { //DMX
