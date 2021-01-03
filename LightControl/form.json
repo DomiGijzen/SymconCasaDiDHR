@@ -8,8 +8,7 @@
             ]
         }
         ,{ "type": "Label", "caption": "Can also be the logical parent group in which the variables are stored." }
-        ,{ "type": "SelectInstance", "name": "Instance", "caption": "Instance" }
-        ,{ "type": "SelectObject", "name": "ObjectID", "caption": "Target" }
+        ,{ "type": "SelectObject", "name": "Instance", "caption": "Instance" }
         ,{ "type": "NumberSpinner", "name": "Channel", "caption": "Channel", "enabled": true}
         ,{ "type": "Select", "name": "ChannelBits", "caption": "Bits per channel", "enabled": true,
             "options": [
