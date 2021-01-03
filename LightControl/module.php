@@ -115,7 +115,7 @@
 				case 3: //IO-Relais
 					$MQTTPayload = ($SetState == 1 ? "TRUE" : "FALSE");
 					MQTTC_Publish(27748, "WAGO-PFC200/In/DigitalOutputs/".$StateVariableName, $MQTTPayload, 0, 0);
-					sleep(0.3);
+					usleep(100000);
 					if  (GetValue($StateVariableId) == $SetState) {
 					$this->SetValue("Status", $SetState);
 					}
