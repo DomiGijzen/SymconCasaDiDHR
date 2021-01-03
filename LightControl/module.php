@@ -44,7 +44,7 @@
 			$ChannelBits = $this->ReadPropertyInteger("ChannelBits");
 			$StdPercentage = $this->ReadPropertyInteger("StdPercentage");
 			$StdDimTime = $this->ReadPropertyInteger("StdDimTime");
-			$StartPercentage = $this->ReadPropertyInteger("StartPercentage")
+			$StartPercentage = $this->ReadPropertyInteger("StartPercentage");
 						
 			//Derive Variables per InstanceType
 			switch($InstanceType)
