@@ -1,0 +1,12 @@
+{
+    "id": "{5BA4CC70-67F6-4849-FEB4-3B8B3B1AECEA}",
+    "name": "PresenceDetection",
+    "type": 3,
+    "vendor": "GijzenDMA",
+    "aliases": [],
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "PDM",
+    "url": ""
+}
