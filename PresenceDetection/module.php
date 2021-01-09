@@ -8,8 +8,16 @@
 			
 			//Properties
 			$this -> RegisterPropertyString("MotionSensors", '[]');
+
 			//StatusVariables
+			$this->RegisterVariableBoolean('Active', $this->Translate('Active'), '~Switch', 10);
+            $this->EnableAction('Active');
+			$this->RegisterVariableBoolean('Alert', $this->Translate('Alert'), '~Alert', 30);
+            $this->EnableAction('Alert');
 			$this -> RegisterVariableString('ActiveSensors', 'Active Sensors', '~TextBox', 40);
+
+			//Attributes
+			$this->RegisterAttributeInteger('LastAlert', 0);
 		}
 
 		public function Destroy()
@@ -39,6 +47,32 @@
                 $this->RegisterReference($sensor->VariableID);
             }
 		}
+
+		public function MessageSink($TimeStamp, $SenderID, $Message, $Data)
+        {
+            $this->SendDebug('MessageSink', 'SenderID: ' . $SenderID . ', Message: ' . $Message, 0);
+
+            $sensors = json_decode($this->ReadPropertyString('Sensors'));
+            foreach ($sensors as $sensor) {
+                if ($sensor->VariableID == $SenderID) {
+                    $this->TriggerAlert($sensor->VariableID, GetValue($sensor->VariableID));
+                    $this->updateActive();
+                    return;
+                }
+            }
+		}
+		
+        public function TriggerAlert(int $SourceID, $SourceValue)
+        {
+
+            //Only enable alarming if our module is active
+            if (!json_decode($this->GetBuffer('Active'))) {
+                return;
+            }
+
+            $this->WriteAttributeInteger('LastAlert', $SourceID);
+            SetValue($this->GetIDForIdent('Alert'), True);
+        }
 
 		//Module Functions
         private function updateActive()
