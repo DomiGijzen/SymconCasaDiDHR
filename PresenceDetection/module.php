@@ -43,7 +43,7 @@
 		//Module Functions
         private function updateActive()
         {
-            $sensors = json_decode($this->ReadPropertyString('MotionsSensors'), true);
+            $sensors = json_decode($this->ReadPropertyString('MotionSensors'), true);
 
             $activeSensors = '';
             foreach ($sensors as $sensor) {
