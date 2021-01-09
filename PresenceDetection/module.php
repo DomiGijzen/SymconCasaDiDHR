@@ -7,8 +7,9 @@
 			parent::Create();
 			
 			//Properties
-			$this -> RegisterPropertyString("MotionSensors", "");
+			$this -> RegisterPropertyString("MotionSensors", '[]';
 			//StatusVariables
+			$this -> RegisterVariableString('ActiveSensors', 'Active Sensors', '~TextBox', 40);
 		}
 
 		public function Destroy()
@@ -21,10 +22,45 @@
 		{
 			//Never delete this line!
 			parent::ApplyChanges();
+
+			$sensors = json_decode($this->ReadPropertyString('MotionSensors'));
+		
+			//Update active sensors
+			$this->updateActive();
+			
+			//Deleting all References
+            foreach ($this->GetReferenceList() as $referenceID) {
+                $this->UnregisterReference($referenceID);
+			}
+			
+			//Adding references for targets
+            foreach ($sensors as $sensor) {
+                $this->RegisterMessage($sensor->ID, VM_UPDATE);
+                $this->RegisterReference($sensor->ID);
+            }
 		}
 
 		//Module Functions
+        private function updateActive()
+        {
+            $sensors = json_decode($this->ReadPropertyString('MotionsSensors'), true);
 
+            $activeSensors = '';
+            foreach ($sensors as $sensor) {
+                $sensorID = $sensor['ID'];
+                if ($this->getAlertValue($sensorID, GetValue($sensorID))) {
+                    $activeSensors .= '- ' . IPS_GetLocation($sensorID) . "\n";
+                }
+            }
+            if ($activeSensors == '') {
+                IPS_SetHidden($this->GetIDForIdent('ActiveSensors'), true);
+                return;
+            }
+
+            $this->SetValue('ActiveSensors', $activeSensors);
+            IPS_SetHidden($this->GetIDForIdent('ActiveSensors'), false);
+		}
+		
 		public function RequestAction($Ident, $Value)
 		{
 		}
