@@ -7,7 +7,7 @@
 			parent::Create();
 			
 			//Properties
-			$this -> RegisterPropertyString("MotionSensors", '[]';
+			$this -> RegisterPropertyString("MotionSensors", '[]');
 			//StatusVariables
 			$this -> RegisterVariableString('ActiveSensors', 'Active Sensors', '~TextBox', 40);
 		}
