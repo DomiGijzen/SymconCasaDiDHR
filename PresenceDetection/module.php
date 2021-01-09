@@ -97,7 +97,7 @@
 		{
 			switch ($Ident) {
                 case 'Active':
-                    $this->SetActive($Value);
+					$this->SetValue("Active", true);
                     break;
                 case 'Alert':
                     $this->SetAlert($Value);
