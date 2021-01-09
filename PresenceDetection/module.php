@@ -48,9 +48,7 @@
             $activeSensors = '';
             foreach ($sensors as $sensor) {
                 $sensorID = $sensor['VariableID'];
-                if ($this->getAlertValue($sensorID, GetValue($sensorID))) {
-                    $activeSensors .= '- ' . IPS_GetLocation($sensorID) . "\n";
-                }
+                $activeSensors .= '- ' . IPS_GetLocation($sensorID) . "\n";
             }
             if ($activeSensors == '') {
                 IPS_SetHidden($this->GetIDForIdent('ActiveSensors'), true);
