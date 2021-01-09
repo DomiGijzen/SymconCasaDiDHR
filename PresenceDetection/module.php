@@ -95,6 +95,16 @@
 		
 		public function RequestAction($Ident, $Value)
 		{
+			switch ($Ident) {
+                case 'Active':
+                    $this->SetActive($Value);
+                    break;
+                case 'Alert':
+                    $this->SetAlert($Value);
+                    break;
+                default:
+                    throw new Exception('Invalid ident');
+            }
 		}
 
 	}
