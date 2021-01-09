@@ -35,8 +35,8 @@
 			
 			//Adding references for targets
             foreach ($sensors as $sensor) {
-                $this->RegisterMessage($sensor->ID, VM_UPDATE);
-                $this->RegisterReference($sensor->ID);
+                $this->RegisterMessage($sensor->VariableID, VM_UPDATE);
+                $this->RegisterReference($sensor->VariableID);
             }
 		}
 
@@ -47,7 +47,7 @@
 
             $activeSensors = '';
             foreach ($sensors as $sensor) {
-                $sensorID = $sensor['ID'];
+                $sensorID = $sensor['VariableID'];
                 if ($this->getAlertValue($sensorID, GetValue($sensorID))) {
                     $activeSensors .= '- ' . IPS_GetLocation($sensorID) . "\n";
                 }
