@@ -7,7 +7,7 @@
 			parent::Create();
 			
 			//Properties
-
+			$this -> RegisterPropertyString("MotoionSensors", "")
 			//StatusVariables
 		}
 
