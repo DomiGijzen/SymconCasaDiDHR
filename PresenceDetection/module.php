@@ -1,5 +1,5 @@
 <?php
-	class LightControl extends IPSModule {
+	class PresenceDetection extends IPSModule {
 
 		public function Create()
 		{
