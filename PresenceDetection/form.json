@@ -1,5 +1,43 @@
 {
-    "elements": [],
+    "elements": [
+        {
+            "type": "List",
+            "name": "MotionSensors",
+            "caption": "Motion Sensors",
+            "rowCount": 0,
+            "add": true,
+            "delete": true,
+            "sort": {
+                "column": "Name",
+                "direction": "ascending"
+            },
+            "columns": [{
+                "caption": "VariableID",
+                "name": "VariableID", 
+                "width": "75px",
+                "add": 0,
+                "edit": {
+                    "type": "SelectVariable"
+                }
+            }, {
+                "caption": "Name",
+                "name": "Name",
+                "width": "auto",
+                "add": ""
+            }, {
+                "caption": "State",
+                "name": "State",
+                "width": "40px",
+                "add": "New!"
+            }],
+            "values": [{
+                "InstanceID": 12435,
+                "Name": "ABCD",
+                "State": "OK!",
+                "rowColor": "#ff0000" //rot
+            }]
+        }
+    ],
     "actions": [],
     "status": []
 }
