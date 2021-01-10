@@ -8,7 +8,7 @@
             "add": true,
             "delete": true,
             "sort": {
-                "column": "Name",
+                "column": "VariableID",
                 "direction": "ascending"
             },
             "columns": [{
