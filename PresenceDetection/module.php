@@ -10,7 +10,7 @@
 			$this -> RegisterPropertyString("MotionSensors", '[]');
 
 			//StatusVariables
-			$this->RegisterVariableBoolean('Alert', $this->Translate('Alert'), '~Alert', 30);
+			$this->RegisterVariableBoolean('Motion', 'Motion', '~Presence', 30);
 			$this -> RegisterVariableString('ActiveSensors', 'Active Sensors', '~TextBox', 40);
 
 			//Attributes
@@ -53,16 +53,16 @@
 
             foreach ($sensors as $sensor) {
                 if ($sensor->VariableID == $SenderID) {
-                    $this->TriggerAlert($sensor->VariableID, GetValue($sensor->VariableID));
+                    $this->TriggerMotion($sensor->VariableID, GetValue($sensor->VariableID));
                     $this->updateActive();
                     return;
                 }
             }
 		}
 		
-        public function TriggerAlert(int $SourceID, $SourceValue)
+        public function TriggerMotion(int $SourceID, $SourceValue)
         {
-            SetValue($this->GetIDForIdent('Alert'), True);
+            SetValue($this->GetIDForIdent('Motion'), True);
         }
 
         private function updateActive()
