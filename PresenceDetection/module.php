@@ -78,7 +78,7 @@
         private function updateActive()
         {
 			$sensors = json_decode($this->ReadPropertyString('MotionSensors'), true);
-			
+
 			$activeSensors = '';
             foreach ($sensors as $sensor) {
                 $sensorID = $sensor['VariableID'];
@@ -98,7 +98,7 @@
 			switch ($Ident) {
                 case 'Active':
 					$this->SetBuffer('Active', json_encode($Value));
-					$this->SetValue("Active", true);
+					$this->SetValue("Active", $Value);
                     break;
                 default:
                     throw new Exception('Invalid ident');
