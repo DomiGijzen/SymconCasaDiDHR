@@ -10,8 +10,6 @@
 			$this -> RegisterPropertyString("MotionSensors", '[]');
 
 			//StatusVariables
-			$this->RegisterVariableBoolean('Active', $this->Translate('Active'), '~Switch', 10);
-            $this->EnableAction('Active');
 			$this->RegisterVariableBoolean('Alert', $this->Translate('Alert'), '~Alert', 30);
 			$this -> RegisterVariableString('ActiveSensors', 'Active Sensors', '~TextBox', 40);
 
@@ -33,9 +31,7 @@
 		
 			//Update active sensors
 			$this->updateActive();
-
-			$this->SetBuffer('Active', json_encode($this->GetValue('Active')));
-			
+		
 			//Deleting all References
             foreach ($this->GetReferenceList() as $referenceID) {
                 $this->UnregisterReference($referenceID);
@@ -66,12 +62,6 @@
 		
         public function TriggerAlert(int $SourceID, $SourceValue)
         {
-
-            //Only enable alarming if our module is active
-            if (!json_decode($this->GetBuffer('Active'))) {
-                return;
-            }
-
             SetValue($this->GetIDForIdent('Alert'), True);
         }
 
@@ -96,10 +86,6 @@
 		public function RequestAction($Ident, $Value)
 		{
 			switch ($Ident) {
-                case 'Active':
-					$this->SetBuffer('Active', json_encode($Value));
-					$this->SetValue("Active", $Value);
-                    break;
                 default:
                     throw new Exception('Invalid ident');
             }
