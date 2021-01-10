@@ -35,6 +35,8 @@
 		
 			//Update active sensors
 			$this->updateActive();
+
+			$this->SetBuffer('Active', json_encode($this->GetValue('Active')));
 			
 			//Deleting all References
             foreach ($this->GetReferenceList() as $referenceID) {
@@ -52,7 +54,7 @@
         {
             $this->SendDebug('MessageSink', 'SenderID: ' . $SenderID . ', Message: ' . $Message, 0);
 
-            $sensors = json_decode($this->ReadPropertyString('Sensors'));
+            $sensors = json_decode($this->ReadPropertyString('MotionSensors'));
             foreach ($sensors as $sensor) {
                 if ($sensor->VariableID == $SenderID) {
                     $this->TriggerAlert($sensor->VariableID, GetValue($sensor->VariableID));
@@ -97,6 +99,7 @@
 		{
 			switch ($Ident) {
                 case 'Active':
+					
 					$this->SetValue("Active", true);
                     break;
                 case 'Alert':
