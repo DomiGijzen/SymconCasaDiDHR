@@ -13,11 +13,9 @@
 			$this->RegisterVariableBoolean('Active', $this->Translate('Active'), '~Switch', 10);
             $this->EnableAction('Active');
 			$this->RegisterVariableBoolean('Alert', $this->Translate('Alert'), '~Alert', 30);
-            $this->EnableAction('Alert');
 			$this -> RegisterVariableString('ActiveSensors', 'Active Sensors', '~TextBox', 40);
 
 			//Attributes
-			$this->RegisterAttributeInteger('LastAlert', 0);
 		}
 
 		public function Destroy()
@@ -50,11 +48,11 @@
             }
 		}
 
+		//Module Functions
 		public function MessageSink($TimeStamp, $SenderID, $Message, $Data)
         {
             $this->SendDebug('MessageSink', 'SenderID: ' . $SenderID . ', Message: ' . $Message, 0);
 
-            $sensors = json_decode($this->ReadPropertyString('MotionSensors'));
             foreach ($sensors as $sensor) {
                 if ($sensor->VariableID == $SenderID) {
                     $this->TriggerAlert($sensor->VariableID, GetValue($sensor->VariableID));
@@ -72,15 +70,11 @@
                 return;
             }
 
-            $this->WriteAttributeInteger('LastAlert', $SourceID);
             SetValue($this->GetIDForIdent('Alert'), True);
         }
 
-		//Module Functions
         private function updateActive()
         {
-            $sensors = json_decode($this->ReadPropertyString('MotionSensors'), true);
-
             $activeSensors = '';
             foreach ($sensors as $sensor) {
                 $sensorID = $sensor['VariableID'];
@@ -99,11 +93,8 @@
 		{
 			switch ($Ident) {
                 case 'Active':
-					
+					$this->SetBuffer('Active', json_encode($Value));
 					$this->SetValue("Active", true);
-                    break;
-                case 'Alert':
-                    $this->SetAlert($Value);
                     break;
                 default:
                     throw new Exception('Invalid ident');
