@@ -1,0 +1,12 @@
+{
+    "id": "{F2D69FA9-5A7D-F58F-5737-BAAAF23024E8}",
+    "name": "MotionDetection",
+    "type": 3,
+    "vendor": "GijzenDMA",
+    "aliases": [],
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "MDM",
+    "url": ""
+}
