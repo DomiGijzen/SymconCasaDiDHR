@@ -51,7 +51,9 @@
 		//Module Functions
 		public function MessageSink($TimeStamp, $SenderID, $Message, $Data)
         {
-            $this->SendDebug('MessageSink', 'SenderID: ' . $SenderID . ', Message: ' . $Message, 0);
+			$sensors = json_decode($this->ReadPropertyString('MotionSensors'));
+			
+			$this->SendDebug('MessageSink', 'SenderID: ' . $SenderID . ', Message: ' . $Message, 0);
 
             foreach ($sensors as $sensor) {
                 if ($sensor->VariableID == $SenderID) {
@@ -75,7 +77,9 @@
 
         private function updateActive()
         {
-            $activeSensors = '';
+			$sensors = json_decode($this->ReadPropertyString('MotionSensors'));
+			
+			$activeSensors = '';
             foreach ($sensors as $sensor) {
                 $sensorID = $sensor['VariableID'];
                 $activeSensors .= '- ' . IPS_GetLocation($sensorID) . "\n";
