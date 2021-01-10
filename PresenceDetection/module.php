@@ -77,7 +77,7 @@
 
         private function updateActive()
         {
-			$sensors = json_decode($this->ReadPropertyString('MotionSensors'));
+			$sensors = json_decode($this->ReadPropertyString('MotionSensors'), true);
 			
 			$activeSensors = '';
             foreach ($sensors as $sensor) {
