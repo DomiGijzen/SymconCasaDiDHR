@@ -8,7 +8,7 @@
 			
 			//Properties
 			$this -> RegisterPropertyInteger("MotionSensorType", 0);
-			$this -> RegisterPropertyInteger("Instance", 0);
+			$this -> RegisterPropertyInteger("MotionSensor", 0);
 
 			//StatusVariables
 			$this -> RegisterVariableBoolean("MomentaryPresence", "Momentary presence", "~Presence", 10);
@@ -34,7 +34,7 @@
 			//Never delete this line!
 			parent::ApplyChanges();
 
-			$sensors = $this -> ReadPropertyInteger('MotionSensors');
+			$sensors = $this -> ReadPropertyInteger('MotionSensor');
 		
 			//Update active sensors
 			$this -> updateActive();
@@ -54,7 +54,7 @@
 		//Module Functions
 		public function MessageSink($TimeStamp, $SenderID, $Message, $Data)
         {
-			$sensors = $this->ReadPropertyInteger('MotionSensors');
+			$sensors = $this->ReadPropertyInteger('MotionSensor');
 			
 			$this -> SendDebug('MessageSink', 'SenderID: ' . $SenderID . ', Message: ' . $Message, 0);
 
@@ -80,7 +80,7 @@
 
         private function updateActive()
         {
-			$sensors = $this -> ReadPropertyString('MotionSensors');
+			$sensors = $this -> ReadPropertyString('MotionSensor');
 
 			$activeSensors = '';
             foreach ($sensors as $sensor) {
