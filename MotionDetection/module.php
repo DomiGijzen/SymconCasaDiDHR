@@ -21,7 +21,7 @@
 			//Attributes
 
 			//Timers
-			$this -> RegisterTimer('Delay', 5000, 'PDM_ResetMotion($_IPS[\'TARGET\']);');
+			$this -> RegisterTimer('Delay', 5000, 'MDM_ResetMotion($_IPS[\'TARGET\']);');
 		}
 
 		public function Destroy()
