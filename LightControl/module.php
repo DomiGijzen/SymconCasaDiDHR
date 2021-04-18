@@ -117,7 +117,7 @@
 					//PHUE_Request($Instance,$array); 
 					if(PHUE_DimSet($Instance, $SetDim)) {
 					$this->SetValue("Status", $SetState);
-					$this->SetValue("Dim", $SetDimPerc);
+					$this->SetValue("Dim", $SetDimPerc); //
 					}
 					break;
 				
