@@ -1,5 +1,14 @@
 {
-    "elements": [],
+    "elements": [
+        { "type": "Select", "name": "MotionSensorType", "caption": "Soort bewegingssensor",
+            "options": [
+                {"caption": "Fibaro Eye", "value": 1 }
+                ,{"caption": "PIR", "value": 2 }
+            ]
+        }
+        ,{ "type": "Label", "caption": "Can also be the logical parent group in which the variables are stored." }
+        ,{ "type": "SelectObject", "name": "Instance", "caption": "Instance" }
+    ],
     "actions": [],
     "status": []
 }
