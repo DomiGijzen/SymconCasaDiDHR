@@ -7,7 +7,7 @@
             ]
         }
         ,{ "type": "Label", "caption": "Can also be the logical parent group in which the variables are stored." }
-        ,{ "type": "SelectObject", "name": "Instance", "caption": "Instance" }
+        ,{ "type": "SelectObject", "name": "MotionSensor", "caption": "Motion Sensor" }
     ],
     "actions": [],
     "status": []
