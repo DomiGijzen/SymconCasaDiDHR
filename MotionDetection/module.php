@@ -80,7 +80,7 @@
 
         private function updateActive()
         {
-			$sensors = $this -> ReadPropertyString('MotionSensor');
+			$sensors = $this -> ReadPropertyInteger('MotionSensor');
 
 			$activeSensors = '';
             foreach ($sensors as $sensor) {
