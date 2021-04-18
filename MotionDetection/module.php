@@ -36,8 +36,6 @@
 
 			$sensor = $this -> ReadPropertyInteger('MotionSensor');
 		
-			//Update active sensors
-			$this -> updateActive();
 		
 			//Deleting all References
             foreach ($this->GetReferenceList() as $referenceID) {
@@ -58,7 +56,6 @@
 
                 if ($sensor -> VariableID == $SenderID) {
                     $this -> TriggerMotion($sensor -> VariableID, GetValue($sensor -> VariableID));
-                    $this -> updateActive();
                     return;
                 }
 		}
@@ -74,22 +71,6 @@
             SetValue($this -> GetIDForIdent('Motion'), False);
 		}
 
-        private function updateActive()
-        {
-			$sensor = $this -> ReadPropertyInteger('MotionSensor');
-
-			$activeSensors = '';
-                $sensorID = $sensor;
-                $activeSensors .= '- ' . IPS_GetLocation($sensorID) . "\n";
-            if ($activeSensors == '') {
-                IPS_SetHidden($this -> GetIDForIdent('ActiveSensors'), true);
-                return;
-            }
-
-            $this -> SetValue('ActiveSensors', $activeSensors);
-            IPS_SetHidden($this -> GetIDForIdent('ActiveSensors'), false);
-		}
-		
 		public function RequestAction($Ident, $Value)
 		{
 			switch ($Ident) {
