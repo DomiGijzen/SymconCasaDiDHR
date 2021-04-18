@@ -13,7 +13,7 @@
 			$this -> RegisterVariableBoolean('Motion', 'Motion', '~Presence', 999);
 			$this -> RegisterVariableString('ActiveSensors', 'Active Sensors', '~TextBox', 999);
 			$this -> RegisterVariableBoolean("Presence", "Presence", "~Presence", 10);
-			$this -> RegisterVariableInteger("Timeout", "Timeout", "~UnixTimeStamp", 20);
+			$this -> RegisterVariableInteger("Timeout", "Timeout", "~UnixTimestamp", 20);
 			$this -> RegisterVariableInteger("TriggerCount", "Trigger count", "", 30);
 			$this -> RegisterVariableInteger("MinimumTriggerCount", "Minimum Trigger count", "", 40);
 			$this -> RegisterVariableInteger("InitialTimeoutPeriod", "Initial Timeout Period", "", 50);
