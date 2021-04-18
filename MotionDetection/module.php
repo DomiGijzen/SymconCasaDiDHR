@@ -79,7 +79,7 @@
 			$sensor = $this -> ReadPropertyInteger('MotionSensor');
 
 			$activeSensors = '';
-                $sensorID = $sensor['VariableID'];
+                $sensorID = $sensor;
                 $activeSensors .= '- ' . IPS_GetLocation($sensorID) . "\n";
             if ($activeSensors == '') {
                 IPS_SetHidden($this -> GetIDForIdent('ActiveSensors'), true);
