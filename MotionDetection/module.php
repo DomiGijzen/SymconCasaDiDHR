@@ -34,7 +34,7 @@
 			//Never delete this line!
 			parent::ApplyChanges();
 
-			$sensors = $this -> ReadPropertyInteger('MotionSensor');
+			$sensor = $this -> ReadPropertyInteger('MotionSensor');
 		
 			//Update active sensors
 			$this -> updateActive();
@@ -45,26 +45,22 @@
 			}
 			
 			//Adding references for targets
-            foreach ($sensors as $sensor) {
-                $this -> RegisterMessage($sensor -> VariableID, VM_UPDATE);
-                $this -> RegisterReference($sensor -> VariableID);
-            }
+                        $this -> RegisterMessage($sensor -> VariableID, VM_UPDATE);
+            $this -> RegisterReference($sensor -> VariableID);
 		}
 
 		//Module Functions
 		public function MessageSink($TimeStamp, $SenderID, $Message, $Data)
         {
-			$sensors = $this->ReadPropertyInteger('MotionSensor');
+			$sensor = $this->ReadPropertyInteger('MotionSensor');
 			
 			$this -> SendDebug('MessageSink', 'SenderID: ' . $SenderID . ', Message: ' . $Message, 0);
 
-            foreach ($sensors as $sensor) {
                 if ($sensor -> VariableID == $SenderID) {
                     $this -> TriggerMotion($sensor -> VariableID, GetValue($sensor -> VariableID));
                     $this -> updateActive();
                     return;
                 }
-            }
 		}
 		
         public function TriggerMotion(int $SourceID, $SourceValue)
@@ -80,13 +76,11 @@
 
         private function updateActive()
         {
-			$sensors = $this -> ReadPropertyInteger('MotionSensor');
+			$sensor = $this -> ReadPropertyInteger('MotionSensor');
 
 			$activeSensors = '';
-            foreach ($sensors as $sensor) {
                 $sensorID = $sensor['VariableID'];
                 $activeSensors .= '- ' . IPS_GetLocation($sensorID) . "\n";
-            }
             if ($activeSensors == '') {
                 IPS_SetHidden($this -> GetIDForIdent('ActiveSensors'), true);
                 return;
