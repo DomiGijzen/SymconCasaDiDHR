@@ -12,6 +12,9 @@
 			$this -> RegisterVariableBoolean("MomentaryPresence", "Momentary presence", "~Presence", 10);
 			$this -> RegisterVariableInteger("LastDetection", "Last detection", "~UnixTimeStamp" 20);
 			$this -> RegisterVariableInteger("LastMotionDuration", "Last motion duration", "", 30));
+			$this -> RegisterVariableBoolean("InitiatesPresence", "Initiates presence", "", 40));
+			$this -> RegisterVariableInteger("TimeOut", "Time Out", "", 50));
+			$this -> RegisterVariableInteger("MinimumMotionDuration", "Minimum motion duration", "", 60));
 
 			//Attributes
 
