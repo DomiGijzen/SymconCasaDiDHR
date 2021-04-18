@@ -43,8 +43,8 @@
 			}
 			
 			//Adding references for targets
-                        $this -> RegisterMessage($sensor -> VariableID, VM_UPDATE);
-            $this -> RegisterReference($sensor -> VariableID);
+            $this -> RegisterMessage($sensor, VM_UPDATE);
+            $this -> RegisterReference($sensor);
 		}
 
 		//Module Functions
@@ -54,8 +54,8 @@
 			
 			$this -> SendDebug('MessageSink', 'SenderID: ' . $SenderID . ', Message: ' . $Message, 0);
 
-                if ($sensor -> VariableID == $SenderID) {
-                    $this -> TriggerMotion($sensor -> VariableID, GetValue($sensor -> VariableID));
+                if ($sensor == $SenderID) {
+                    $this -> TriggerMotion($sensor, GetValue($sensor));
                     return;
                 }
 		}
