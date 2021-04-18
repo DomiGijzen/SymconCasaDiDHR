@@ -62,13 +62,13 @@
 		
         public function TriggerMotion(int $SourceID, $SourceValue)
         {
-			SetValue($this -> GetIDForIdent('Motion'), True);
+			SetValue($this -> GetIDForIdent('MomentaryPresence'), True);
 			$this->SetTimerInterval("Delay", 5000);
 		}
 		
 		public function ResetMotion()
 		{
-            SetValue($this -> GetIDForIdent('Motion'), False);
+            SetValue($this -> GetIDForIdent('MomentaryPresence'), False);
 		}
 
 		public function RequestAction($Ident, $Value)
